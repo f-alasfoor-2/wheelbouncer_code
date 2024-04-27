@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/mobileControls/jump.png" type="Texture" id=1]
+[ext_resource path="res://assets/mobileControls/right.png" type="Texture" id=2]
+[ext_resource path="res://assets/mobileControls/left.png" type="Texture" id=3]
+[ext_resource path="res://assets/mobileControls/dash.png" type="Texture" id=4]
+
+[node name="MobileControls" type="CanvasLayer"]
+offset = Vector2( -25, 25 )
+scale = Vector2( 1.39, 1.39 )
+transform = Transform2D( 1.39, 0, 0, 1.39, -25, 25 )
+
+[node name="left" type="TouchScreenButton" parent="."]
+position = Vector2( 32, 576 )
+scale = Vector2( 0.833333, 0.833333 )
+normal = ExtResource( 3 )
+passby_press = true
+action = "left1"
+visibility_mode = 1
+
+[node name="right" type="TouchScreenButton" parent="."]
+position = Vector2( 224, 576 )
+scale = Vector2( 0.833333, 0.833333 )
+normal = ExtResource( 2 )
+passby_press = true
+action = "right1"
+visibility_mode = 1
+
+[node name="jump" type="TouchScreenButton" parent="."]
+position = Vector2( 1216, 576 )
+scale = Vector2( 0.833333, 0.833333 )
+normal = ExtResource( 1 )
+passby_press = true
+action = "jump1"
+visibility_mode = 1
+
+[node name="dash" type="TouchScreenButton" parent="."]
+position = Vector2( 1024, 576 )
+scale = Vector2( 0.833333, 0.833333 )
+normal = ExtResource( 4 )
+passby_press = true
+action = "dash1"
+visibility_mode = 1
