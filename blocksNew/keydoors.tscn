@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/miscTiles/keydoor.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Node2D
+
+
+
+func open():
+	$Sprite.texture = load(\"res://assets/miscTiles/keydoor_open/keydoor_o1.png\")
+	yield(get_tree().create_timer(0.0875),\"timeout\")
+	$Sprite.texture = load(\"res://assets/miscTiles/keydoor_open/keydoor_o2.png\")
+	yield(get_tree().create_timer(0.0875),\"timeout\")
+	$Sprite.texture = load(\"res://assets/miscTiles/keydoor_open/keydoor_o3.png\")
+	yield(get_tree().create_timer(0.0875),\"timeout\")
+	$Sprite.texture = load(\"res://assets/miscTiles/keydoor_open/keydoor_o4.png\")
+	yield(get_tree().create_timer(0.0875),\"timeout\")
+	
+	queue_free()
+
+
+"
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 64 )
+
+[node name="keydoor" type="StaticBody2D"]
+position = Vector2( 32, 64 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

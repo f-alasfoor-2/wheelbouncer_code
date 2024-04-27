@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+
+var fall1 = 0
+var fallspeed = 15
+var setfall = 0
+var character = null
+var x1_val = 0
+var x2_val = 0
+var y_val = 0
+var offset = 0
+var fallup = 0
+
+
+func setFall(x1, x2, y, chara, off, up):
+	x1_val = x1
+	x2_val = x2
+	y_val = y
+	character = chara
+	offset = off
+	fallup = up
+	
+	setfall = 1
+	pass
+
+
+func _process(delta):
+	if setfall == 1:
+		if character.position.x >= x1_val and character.position.x <= x2_val:
+			fall1 = 1
+		
+		
+		if fall1 == 1 and fallup == 0:
+			yield(get_tree().create_timer(0.27),\"timeout\")
+			if self.position.y < y_val-(64*offset):
+				self.position.y = self.position.y + fallspeed
+				if fallspeed < 35:
+					fallspeed = fallspeed + 1.2
+		elif fall1 == 1 and fallup == 1:
+			yield(get_tree().create_timer(0.27),\"timeout\")
+			if self.position.y > y_val:
+				self.position.y = self.position.y - fallspeed
+				if character.fallUp() == true and character.position.y >= self.position.y and character.position.x >= x1_val and character.position.x <= x2_val:
+					character.velocity.y = -1600
+				if fallspeed < 35:
+					fallspeed = fallspeed + 1.2
+		if fall1 == 1 and fallup == 2:
+			yield(get_tree().create_timer(0.27),\"timeout\")
+			if self.position.x > y_val-(64*offset):
+				self.position.x = self.position.x - fallspeed
+				if fallspeed < 35:
+					fallspeed = fallspeed + 1.2
+		if fall1 == 1 and fallup == 3:
+			yield(get_tree().create_timer(0.27),\"timeout\")
+			if self.position.x < y_val-(64*offset):
+				self.position.x = self.position.x + fallspeed
+				if fallspeed < 35:
+					fallspeed = fallspeed + 1.2
+"
+
+[node name="FallController" type="Node2D"]
+script = SubResource( 1 )
